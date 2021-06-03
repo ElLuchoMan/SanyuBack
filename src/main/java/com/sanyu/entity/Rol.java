@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -25,9 +27,9 @@ public class Rol {
 
 	@Column(name = "N_NOMBREROL", nullable = false, unique = true)
 	private String nombreRol;
-	// @ManyToOne
-	// @JoinColumn(name = "K_IDTURNO", nullable = false)
-	// private Turno turno;
+	@ManyToOne
+	@JoinColumn(name = "K_IDTURNO", nullable = false)
+	private Turno turno;
 	@JsonIgnore
 	@OneToMany(mappedBy = "documento", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@Column(name = "K_DOCUMENTO", nullable = false)
