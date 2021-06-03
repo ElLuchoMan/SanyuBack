@@ -15,7 +15,7 @@ public class Turno {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "K_IDTURNO")
-	private Long idTurno;
+	private Number idTurno;
 	@Column(name = "F_FECHAINICIO")
 	private Date fechaInicio;
 	@Column(name = "F_FECHAFIN")

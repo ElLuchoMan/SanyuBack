@@ -10,23 +10,22 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Contratista")
+@Table(name = "Contratista")
 public class Contratista implements Serializable {
 
 	private static final long serialVersionUID = 9015649773260182798L;
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-@Column(name="K_DOCUMENTO")
-private Number documento;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "K_DOCUMENTO")
+	private Number documento;
 
-@Column(name="N_NOMBRECONTRATISTA", nullable=false, length=50)
-private String nombre;
+	@Column(name = "N_NOMBRECONTRATISTA", nullable = false, length = 50)
+	private String nombre;
 
-@Column(name="Q_TELEFONO", nullable=false,unique=true)
-private String telefono;
+	@Column(name = "Q_TELEFONO", nullable = false, unique = true)
+	private String telefono;
 //@ManyToOne
 //@JoinColumn(name = "K_IDROL", nullable = false)
 //private Rol rol;
-
 
 }
