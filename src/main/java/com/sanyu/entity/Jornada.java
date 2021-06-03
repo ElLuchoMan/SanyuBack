@@ -16,4 +16,21 @@ public class Jornada {
 	private Number idJornada;
 	@Column(name = "N_NOMBREJORNADA")
 	private String nombreJornada;
+
+	public Number getIdJornada() {
+		return idJornada;
+	}
+
+	public void setIdJornada(Number idJornada) {
+		this.idJornada = idJornada;
+	}
+
+	public String getNombreJornada() {
+		return nombreJornada;
+	}
+
+	public void setNombreJornada(String nombreJornada) {
+		this.nombreJornada = nombreJornada;
+	}
+
 }
