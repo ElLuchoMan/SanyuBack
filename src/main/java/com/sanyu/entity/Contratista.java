@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -24,8 +26,8 @@ public class Contratista implements Serializable {
 
 	@Column(name = "Q_TELEFONO", nullable = false, unique = true)
 	private String telefono;
-//@ManyToOne
-//@JoinColumn(name = "K_IDROL", nullable = false)
-//private Rol rol;
+	@ManyToOne
+	@JoinColumn(name = "K_IDROL", nullable = false)
+	private Rol rol;
 
 }
