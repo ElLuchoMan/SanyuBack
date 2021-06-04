@@ -30,4 +30,40 @@ public class Contratista implements Serializable {
 	@JoinColumn(name = "K_IDROL", nullable = false)
 	private Rol rol;
 
+	public Number getDocumento() {
+		return documento;
+	}
+
+	public void setDocumento(Number documento) {
+		this.documento = documento;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public Rol getRol() {
+		return rol;
+	}
+
+	public void setRol(Rol rol) {
+		this.rol = rol;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 }
