@@ -25,5 +25,28 @@ public class Jornada {
 	@Column(name = "K_IDTURNO", nullable = false)
 	Set<Turno> turno;
 
+	public Number getIdJornada() {
+		return idJornada;
+	}
+
+	public void setIdJornada(Number idJornada) {
+		this.idJornada = idJornada;
+	}
+
+	public String getNombreJornada() {
+		return nombreJornada;
+	}
+
+	public void setNombreJornada(String nombreJornada) {
+		this.nombreJornada = nombreJornada;
+	}
+
+	public Set<Turno> getTurno() {
+		return turno;
+	}
+
+	public void setTurno(Set<Turno> turno) {
+		this.turno = turno;
+	}
 
 }
