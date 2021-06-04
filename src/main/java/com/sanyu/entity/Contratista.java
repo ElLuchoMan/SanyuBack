@@ -1,11 +1,7 @@
 package com.sanyu.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -13,11 +9,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Contratista")
-public class Contratista implements Serializable {
+public class Contratista {
 
-	private static final long serialVersionUID = 9015649773260182798L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "K_DOCUMENTO")
 	private Number documento;
 
@@ -62,8 +56,5 @@ public class Contratista implements Serializable {
 		this.rol = rol;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 
 }
