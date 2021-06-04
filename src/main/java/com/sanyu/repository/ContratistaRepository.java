@@ -13,5 +13,7 @@ public interface ContratistaRepository extends JpaRepository<Contratista, Number
 
 	boolean existsByDocumento(Number documento);
 
+	void deleteById(Number documento);
+
 
 }

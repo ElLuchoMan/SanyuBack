@@ -34,4 +34,12 @@ public class ContratistaService {
 	public Optional<Contratista> obtenerPorDocumento(Number documento) {
 		return contratistaRepository.findByDocumento(documento);
 	}
+	public void guardar(Contratista contratista) {
+		contratistaRepository.save(contratista);
+	}
+
+	public void borrar(Number documento) {
+		contratistaRepository.deleteById(documento);
+	}
+
 }
