@@ -1,12 +1,16 @@
 package com.sanyu.entity;
 
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -24,8 +28,8 @@ public class Turno {
 	private String horaInicio;
 	@Column(name = "O_OBSERVACION")
 	private String observacion;
-	// @ManyToOne
-	// @JoinColumn(name = "K_IDJORNADA", nullable = false)
-	// private Jornada jornada;
+	@OneToMany(mappedBy = "idRol", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@Column(name = "K_IDROL", nullable = false)
+	Set<Rol> rol;
 
 }
