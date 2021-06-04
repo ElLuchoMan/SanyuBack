@@ -16,15 +16,12 @@ public class ContratistaService {
 	@Autowired
 	ContratistaRepository contratistaRepository;
 
-	public Optional<Contratista> findyByName(String nombre) {
-		return contratistaRepository.findByName(nombre);
+	public Optional<Contratista> findByDocumento(Number documento) {
+		return contratistaRepository.findByDocumento(documento);
 	}
 
-	public Optional<Contratista> findByDocument(Number documento) {
-		return contratistaRepository.findByDocument(documento);
+	public boolean existsByDocumento(Number documento) {
+		return contratistaRepository.existsByDocumento(documento);
 	}
 
-	public boolean existsByDocument(Number documento) {
-		return contratistaRepository.existsByDocument(documento);
-	}
 }
