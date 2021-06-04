@@ -13,7 +13,7 @@ public class Contratista {
 
 	@Id
 	@Column(name = "K_DOCUMENTO")
-	private Number documento;
+	private Integer documento;
 
 	@Column(name = "N_NOMBRECONTRATISTA", nullable = false, length = 50)
 	private String nombre;
@@ -24,11 +24,11 @@ public class Contratista {
 	@JoinColumn(name = "K_IDROL", nullable = false)
 	private Rol rol;
 
-	public Number getDocumento() {
+	public Integer getDocumento() {
 		return documento;
 	}
 
-	public void setDocumento(Number documento) {
+	public void setDocumento(Integer documento) {
 		this.documento = documento;
 	}
 

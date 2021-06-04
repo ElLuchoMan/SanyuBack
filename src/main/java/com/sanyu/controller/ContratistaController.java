@@ -37,7 +37,7 @@ public class ContratistaController {
 
 	@GetMapping("/{documento}")
 	@ApiOperation(value = "Método que trae a un contratista mediante su documento")
-	public ResponseEntity<Contratista> getOne(@PathVariable Number documento) {
+	public ResponseEntity<Contratista> getOne(@PathVariable Integer documento) {
 		if (!contratistaService.existsByDocumento(documento))
 			return new ResponseEntity(new Mensaje("No existe una persona con ese documento"), HttpStatus.NOT_FOUND);
 		Contratista contratista = contratistaService.obtenerPorDocumento(documento).get();
@@ -46,7 +46,7 @@ public class ContratistaController {
 
 	@PostMapping("/nuevo")
 	@ApiOperation(value = "Método que permite registrar a un contratista")
-	public ResponseEntity<?> create(@RequestBody Contratista contratista, Rol rol) {
+	public ResponseEntity<?> create(@RequestBody Contratista contratista) {
 		
 		//if (StringUtils.isBlank(persona.getDocumento()))
 			//return new ResponseEntity(new Mensaje("El documento es obligatorio"), HttpStatus.BAD_REQUEST);

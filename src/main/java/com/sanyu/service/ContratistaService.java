@@ -19,11 +19,11 @@ public class ContratistaService {
 	@Autowired
 	ContratistaRepository contratistaRepository;
 
-	public Optional<Contratista> findByDocumento(Number documento) {
+	public Optional<Contratista> findByDocumento(Integer documento) {
 		return contratistaRepository.findByDocumento(documento);
 	}
 
-	public boolean existsByDocumento(Number documento) {
+	public boolean existsByDocumento(Integer documento) {
 		return contratistaRepository.existsByDocumento(documento);
 	}
 
@@ -31,7 +31,7 @@ public class ContratistaService {
 		List<Contratista> lista = contratistaRepository.findAll();
 		return lista;
 	}
-	public Optional<Contratista> obtenerPorDocumento(Number documento) {
+	public Optional<Contratista> obtenerPorDocumento(Integer documento) {
 		return contratistaRepository.findByDocumento(documento);
 	}
 	public void guardar(Contratista contratista) {

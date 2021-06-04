@@ -20,7 +20,7 @@ public class Rol {
 
 	@Id
 	@Column(name = "K_IDROL")
-	private Number idRol;
+	private Integer idRol;
 
 	@Column(name = "N_NOMBREROL", nullable = false, unique = true)
 	private String nombreRol;
@@ -32,11 +32,11 @@ public class Rol {
 	@Column(name = "K_DOCUMENTO", nullable = false)
 	Set<Contratista> contratista;
 
-	public Number getIdRol() {
+	public Integer getIdRol() {
 		return idRol;
 	}
 
-	public void setIdRol(Number idRol) {
+	public void setIdRol(Integer idRol) {
 		this.idRol = idRol;
 	}
 

@@ -10,23 +10,26 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "Jornada")
 public class Jornada {
 	@Id
 	@Column(name = "K_IDJORNADA")
-	private Number idJornada;
+	private Integer idJornada;
 	@Column(name = "N_NOMBREJORNADA")
 	private String nombreJornada;
+	@JsonIgnore
 	@OneToMany(mappedBy = "idTurno", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@Column(name = "K_IDTURNO", nullable = false)
 	Set<Turno> turno;
 
-	public Number getIdJornada() {
+	public Integer getIdJornada() {
 		return idJornada;
 	}
 
-	public void setIdJornada(Number idJornada) {
+	public void setIdJornada(Integer idJornada) {
 		this.idJornada = idJornada;
 	}
 

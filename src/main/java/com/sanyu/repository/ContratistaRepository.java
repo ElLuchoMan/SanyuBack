@@ -9,9 +9,9 @@ import java.util.Optional;
 
 @Repository
 public interface ContratistaRepository extends JpaRepository<Contratista, Number> {
-	Optional<Contratista> findByDocumento(Number documento);
+	Optional<Contratista> findByDocumento(Integer documento);
 
-	boolean existsByDocumento(Number documento);
+	boolean existsByDocumento(Integer documento);
 
 	void deleteById(Number documento);
 
