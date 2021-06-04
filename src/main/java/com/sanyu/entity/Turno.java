@@ -10,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -28,6 +30,9 @@ public class Turno {
 	private String horaInicio;
 	@Column(name = "O_OBSERVACION")
 	private String observacion;
+	@ManyToOne
+	@JoinColumn(name = "K_IDJORNADA", nullable = false)
+	private Jornada jornada;	
 	@OneToMany(mappedBy = "idRol", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@Column(name = "K_IDROL", nullable = false)
 	Set<Rol> rol;
