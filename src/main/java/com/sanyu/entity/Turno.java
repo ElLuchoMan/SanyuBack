@@ -1,5 +1,6 @@
 package com.sanyu.entity;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Set;
 
@@ -12,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -22,22 +25,47 @@ public class Turno {
 	@Column(name = "K_IDTURNO")
 	private Integer idTurno;
 	@Column(name = "F_FECHAINICIO")
+	@Temporal(TemporalType.DATE)
 	private Date fechaInicio;
 	@Column(name = "F_FECHAFIN")
+	@Temporal(TemporalType.DATE)
 	private Date fechaFin;
-	@Column(name = "H_HORAINICIO")
+	@Column(name = "H_HORAINICIO",nullable=false)
 	private String horaInicio;
-	@Column(name = "H_HORAFIN")
+	@Column(name = "H_HORAFIN", nullable=false)
 	private String horaFin;
 	@Column(name = "O_OBSERVACION")
 	private String observacion;
-	@ManyToOne
-	@JoinColumn(name = "K_IDJORNADA", nullable = false)
-	private Jornada jornada;
-	@JsonIgnore
-	@OneToMany(mappedBy = "idRol", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@Column(name = "K_IDROL", nullable = false)
-	Set<Rol> rol;
+	@Column(name = "H_INICIOTURNO")
+	private String inicioTurno;
+	@Column(name = "H_FINTURNO")
+	private String finTurno;
+	@Column(name = "O_USUARIOMODIFICADOR")
+	private String modificador;
+
+	public String getInicioTurno() {
+		return inicioTurno;
+	}
+
+	public void setInicioTurno(String inicioTurno) {
+		this.inicioTurno = inicioTurno;
+	}
+
+	public String getFinTurno() {
+		return finTurno;
+	}
+
+	public void setFinTurno(String finTurno) {
+		this.finTurno = finTurno;
+	}
+
+	public String getModificador() {
+		return modificador;
+	}
+
+	public void setModificador(String modificador) {
+		this.modificador = modificador;
+	}
 
 	public String getHoraFin() {
 		return horaFin;
@@ -85,22 +113,6 @@ public class Turno {
 
 	public void setObservacion(String observacion) {
 		this.observacion = observacion;
-	}
-
-	public Jornada getJornada() {
-		return jornada;
-	}
-
-	public void setJornada(Jornada jornada) {
-		this.jornada = jornada;
-	}
-
-	public Set<Rol> getRol() {
-		return rol;
-	}
-
-	public void setRol(Set<Rol> rol) {
-		this.rol = rol;
 	}
 
 }

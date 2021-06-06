@@ -25,12 +25,6 @@ public class Rol {
 	@Column(name = "N_NOMBREROL", nullable = false, unique = true)
 	private String nombreRol;
 	@ManyToOne
-	@JoinColumn(name = "K_IDTURNO", nullable = false)
-	private Turno turno;
-	@JsonIgnore
-	@OneToMany(mappedBy = "documento", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@Column(name = "K_DOCUMENTO", nullable = false)
-	Set<Contratista> contratista;
 
 	public Integer getIdRol() {
 		return idRol;
@@ -48,20 +42,5 @@ public class Rol {
 		this.nombreRol = nombreRol;
 	}
 
-	public Turno getTurno() {
-		return turno;
-	}
-
-	public void setTurno(Turno turno) {
-		this.turno = turno;
-	}
-
-	public Set<Contratista> getContratista() {
-		return contratista;
-	}
-
-	public void setContratista(Set<Contratista> contratista) {
-		this.contratista = contratista;
-	}
 
 }

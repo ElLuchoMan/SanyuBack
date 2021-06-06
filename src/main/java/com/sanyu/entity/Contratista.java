@@ -18,11 +18,21 @@ public class Contratista {
 	@Column(name = "N_NOMBRECONTRATISTA", nullable = false, length = 50)
 	private String nombre;
 
-	@Column(name = "Q_TELEFONO", nullable = false, unique = true)
+	@Column(name = "O_TELEFONO", nullable = false, unique = true)
 	private String telefono;
-	@ManyToOne
-	@JoinColumn(name = "K_IDROL", nullable = false)
-	private Rol rol;
+	@Column(name="S_PASSWORD",nullable=false)
+	private String password;
+	//@ManyToOne
+	//@JoinColumn(name = "K_IDROL", nullable = false)
+	//private Rol rol;
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	public Integer getDocumento() {
 		return documento;
@@ -48,13 +58,6 @@ public class Contratista {
 		this.telefono = telefono;
 	}
 
-	public Rol getRol() {
-		return rol;
-	}
-
-	public void setRol(Rol rol) {
-		this.rol = rol;
-	}
 
 
 }

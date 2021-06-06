@@ -2,6 +2,7 @@ package com.sanyu.controller;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,10 +10,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 
 import com.sanyu.service.ContratistaService;
 import com.sanyu.DTO.Mensaje;
@@ -38,6 +41,7 @@ public class ContratistaController {
 	@GetMapping("/{documento}")
 	@ApiOperation(value = "Método que trae a un contratista mediante su documento")
 	public ResponseEntity<Contratista> getOne(@PathVariable Integer documento) {
+		// Valida si existe una persona con ese documento
 		if (!contratistaService.existsByDocumento(documento))
 			return new ResponseEntity(new Mensaje("No existe una persona con ese documento"), HttpStatus.NOT_FOUND);
 		Contratista contratista = contratistaService.obtenerPorDocumento(documento).get();
@@ -47,15 +51,34 @@ public class ContratistaController {
 	@PostMapping("/nuevo")
 	@ApiOperation(value = "Método que permite registrar a un contratista")
 	public ResponseEntity<?> create(@RequestBody Contratista contratista) {
-		
-		//if (StringUtils.isBlank(persona.getDocumento()))
-			//return new ResponseEntity(new Mensaje("El documento es obligatorio"), HttpStatus.BAD_REQUEST);
-		//if (StringUtils.isBlank(persona.getNombre()))
-			//return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
+		// Se valida que el body contenga un documento
+		if (contratista.getDocumento() == null)
+			return new ResponseEntity(new Mensaje("El documento es obligatorio"), HttpStatus.BAD_REQUEST);
+		// Se valida que el body contenta un nombre de contratista
+		if (StringUtils.isBlank(contratista.getNombre()))
+			return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
+		// Valida si el documento ya está registrado
 		if (contratistaService.existsByDocumento(contratista.getDocumento()))
 			return new ResponseEntity(new Mensaje("Ese documento ya est� registrado"), HttpStatus.BAD_REQUEST);
 		contratistaService.guardar(contratista);
 		return new ResponseEntity(new Mensaje("Persona guardada"), HttpStatus.CREATED);
+	}
+
+	@PutMapping("/actualizar/{documento}")
+	@ApiOperation(value = "Método que permite actualizar un contratista mediante su documento")
+	public ResponseEntity<?> update(@RequestBody Contratista contratista,
+			@PathVariable("documento") Integer documento) {
+		if (!contratistaService.existsByDocumento(documento))
+			return new ResponseEntity(new Mensaje("No existe esa persona"), HttpStatus.NOT_FOUND);
+		if (StringUtils.isBlank(contratista.getNombre()))
+			return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
+		Contratista contratistaUpdate = contratistaService.obtenerPorDocumento(documento).get();
+		contratistaUpdate.setDocumento(contratista.getDocumento());
+		contratistaUpdate.setNombre(contratista.getNombre());
+		contratistaUpdate.setTelefono(contratista.getTelefono());
+		contratistaUpdate.setRol(contratista.getRol());
+		contratistaService.guardar(contratistaUpdate);
+		return new ResponseEntity(new Mensaje("Persona actualizada"), HttpStatus.CREATED);
 	}
 
 }

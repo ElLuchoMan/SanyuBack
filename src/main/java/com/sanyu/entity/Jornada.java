@@ -20,10 +20,6 @@ public class Jornada {
 	private Integer idJornada;
 	@Column(name = "N_NOMBREJORNADA")
 	private String nombreJornada;
-	@JsonIgnore
-	@OneToMany(mappedBy = "idTurno", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@Column(name = "K_IDTURNO", nullable = false)
-	Set<Turno> turno;
 
 	public Integer getIdJornada() {
 		return idJornada;
@@ -41,12 +37,5 @@ public class Jornada {
 		this.nombreJornada = nombreJornada;
 	}
 
-	public Set<Turno> getTurno() {
-		return turno;
-	}
-
-	public void setTurno(Set<Turno> turno) {
-		this.turno = turno;
-	}
 
 }
