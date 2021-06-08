@@ -13,14 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sanyu.service.ContratistaService;
 import com.sanyu.DTO.Mensaje;
 import com.sanyu.entity.Contratista;
-import com.sanyu.entity.Rol;
+
 
 import io.swagger.annotations.ApiOperation;
 
@@ -76,7 +74,7 @@ public class ContratistaController {
 		contratistaUpdate.setDocumento(contratista.getDocumento());
 		contratistaUpdate.setNombre(contratista.getNombre());
 		contratistaUpdate.setTelefono(contratista.getTelefono());
-		contratistaUpdate.setRol(contratista.getRol());
+		contratistaUpdate.setPassword(contratista.getPassword());
 		contratistaService.guardar(contratistaUpdate);
 		return new ResponseEntity(new Mensaje("Persona actualizada"), HttpStatus.CREATED);
 	}

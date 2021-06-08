@@ -1,11 +1,15 @@
 package com.sanyu.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -22,49 +26,21 @@ public class Contratista {
 	private String telefono;
 	@Column(name = "S_PASSWORD", nullable = false)
 	private String password;
-	@ManyToOne
-	@JoinColumn(name = "K_IDTURNO", nullable = true)
-	private Turno turno;
-	@ManyToOne
-	@JoinColumn(name = "K_IDROL", nullable = true,insertable=false, updatable=false)
-	private Rol rol;
-	public Integer getDocumento() {
-		return documento;
-	}
-	public void setDocumento(Integer documento) {
+	@JoinTable(name = "TURNO_CONTRATISTA", joinColumns = @JoinColumn(name = "FK_TURNO_CONTRATISTA", nullable = false), inverseJoinColumns = @JoinColumn(name = "FK_CONTRATISTA_TURNO", nullable = false))
+	@ManyToMany(cascade = CascadeType.ALL)
+	private List<Turno> turnos;
+
+	public Contratista(Integer documento, String nombre, String telefono, String password) {
 		this.documento = documento;
-	}
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-	public String getTelefono() {
-		return telefono;
-	}
-	public void setTelefono(String telefono) {
 		this.telefono = telefono;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Turno getTurno() {
-		return turno;
-	}
-	public void setTurno(Turno turno) {
-		this.turno = turno;
-	}
-	public Rol getRol() {
-		return rol;
-	}
-	public void setRol(Rol rol) {
-		this.rol = rol;
-	}
-	
 
-	
+	public void agregarTurnos(Turno turno) {
+		if (this.turnos == null) {
+			this.turnos = new ArrayList<>();
+		}
+		this.turnos.add(null);
+	}
 }
