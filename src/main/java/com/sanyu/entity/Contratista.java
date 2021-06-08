@@ -26,9 +26,13 @@ public class Contratista {
 	private String telefono;
 	@Column(name = "S_PASSWORD", nullable = false)
 	private String password;
+	// @JsonIgnore
 	@JoinTable(name = "TURNO_CONTRATISTA", joinColumns = @JoinColumn(name = "FK_TURNO_CONTRATISTA", nullable = false), inverseJoinColumns = @JoinColumn(name = "FK_CONTRATISTA_TURNO", nullable = false))
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Turno> turnos;
+	@ManyToOne
+	@JoinColumn(name = "K_IDROL")
+	private Rol rol;
 
 	public Contratista(Integer documento, String nombre, String telefono, String password) {
 		this.documento = documento;

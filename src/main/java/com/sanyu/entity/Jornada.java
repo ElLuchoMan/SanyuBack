@@ -1,7 +1,7 @@
 package com.sanyu.entity;
 
-import java.util.List;
 
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -24,8 +24,8 @@ public class Jornada {
 	private Integer idJornada;
 	@Column(name = "N_NOMBREJORNADA")
 	private String nombreJornada;
-/*	@JsonIgnore
+	@JsonIgnore
 	@OneToMany(mappedBy = "turno", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@Column(name = "K_IDTURNO", nullable = false)
-*/
+	Set<Turno> turno;
 }
