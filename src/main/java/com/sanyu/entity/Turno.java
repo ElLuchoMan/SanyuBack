@@ -13,6 +13,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "Turno")
 public class Turno {
@@ -32,13 +34,13 @@ public class Turno {
 	private String modificador;
 	@Column(name = "F_FECHAMODIFICACION")
 	private Date fechaModificacion;
-	@Column(name = "O_RAZONMODFICIACION")
+	@Column(name = "O_RAZONMODIFICACION")
 	private String observacion;
 	@Column(name = "H_INICIOTURNO")
 	private String inicioTurno;
 	@Column(name = "H_FINTURNO")
 	private String finTurno;
-	// @JsonIgnore
+	@JsonIgnore
 	@ManyToMany(mappedBy = "turnos")
 	private List<Contratista> contratistas;
 	@ManyToOne

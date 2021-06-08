@@ -20,26 +20,19 @@ public class Contratista {
 	@Id
 	@Column(name = "K_DOCUMENTO")
 	private Integer documento;
+	@Column(name = "S_PASSWORD", nullable = false)
+	private String password;
 	@Column(name = "N_NOMBRECONTRATISTA", nullable = false, length = 50)
 	private String nombre;
 	@Column(name = "O_TELEFONO", nullable = false, unique = true)
 	private String telefono;
-	@Column(name = "S_PASSWORD", nullable = false)
-	private String password;
-	// @JsonIgnore
-	@JoinTable(name = "TURNO_CONTRATISTA", joinColumns = @JoinColumn(name = "FK_TURNO_CONTRATISTA", nullable = false), inverseJoinColumns = @JoinColumn(name = "FK_CONTRATISTA_TURNO", nullable = false))
-	@ManyToMany(cascade = CascadeType.ALL)
-	private List<Turno> turnos;
 	@ManyToOne
 	@JoinColumn(name = "K_IDROL")
 	private Rol rol;
-
-	public Contratista(Integer documento, String nombre, String telefono, String password) {
-		this.documento = documento;
-		this.nombre = nombre;
-		this.telefono = telefono;
-		this.password = password;
-	}
+	// @JsonIgnore
+	@JoinTable(name = "TURNO_CONTRATISTA", joinColumns = @JoinColumn(name = "K_DOCUMENTO", nullable = false), inverseJoinColumns = @JoinColumn(name = "K_IDTURNO", nullable = false))
+	@ManyToMany(cascade = CascadeType.ALL)
+	private List<Turno> turnos;
 
 	public void agregarTurnos(Turno turno) {
 		if (this.turnos == null) {

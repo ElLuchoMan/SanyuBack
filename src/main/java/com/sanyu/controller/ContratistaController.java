@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sanyu.service.ContratistaService;
 import com.sanyu.DTO.Mensaje;
 import com.sanyu.entity.Contratista;
-
+import com.sanyu.entity.Turno;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -44,6 +44,13 @@ public class ContratistaController {
 			return new ResponseEntity(new Mensaje("No existe una persona con ese documento"), HttpStatus.NOT_FOUND);
 		Contratista contratista = contratistaService.obtenerPorDocumento(documento).get();
 		return new ResponseEntity<Contratista>(contratista, HttpStatus.OK);
+	}
+
+	@GetMapping("/turnos/{documento}")
+	@ApiOperation(value = "Método que trae los turnos de un contratista mediante su documento")
+	public ResponseEntity<List<Contratista>> getTurnos(@PathVariable Integer documento){
+		List<Contratista> contratista = contratistaService.findByContratista(documento);
+		return new ResponseEntity<List<Contratista>>(contratista, HttpStatus.OK);
 	}
 
 	@PostMapping("/nuevo")

@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import com.sanyu.entity.Contratista;
 import com.sanyu.repository.ContratistaRepository;
 
-
 @Service
 @Transactional
 public class ContratistaService {
@@ -31,9 +30,11 @@ public class ContratistaService {
 		List<Contratista> lista = contratistaRepository.findAll();
 		return lista;
 	}
+
 	public Optional<Contratista> obtenerPorDocumento(Integer documento) {
 		return contratistaRepository.findByDocumento(documento);
 	}
+
 	public void guardar(Contratista contratista) {
 		contratistaRepository.save(contratista);
 	}
@@ -42,4 +43,8 @@ public class ContratistaService {
 		contratistaRepository.deleteById(documento);
 	}
 
+	public List<Contratista> findByContratista(Integer documento) {
+		return contratistaRepository.findByContratista(documento);
+
+	}
 }
