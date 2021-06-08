@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -42,6 +43,8 @@ public class Turno {
 	private String inicioTurno;
 	@Column(name = "H_FINTURNO")
 	private String finTurno;
+	@ManyToMany(mappedBy="turnos")
+	private List<Contratista> contratistas;
 	
 
 	/*

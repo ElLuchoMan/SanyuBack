@@ -41,6 +41,6 @@ public class Contratista {
 		if (this.turnos == null) {
 			this.turnos = new ArrayList<>();
 		}
-		this.turnos.add(null);
+		this.turnos.add(turno);
 	}
 }
