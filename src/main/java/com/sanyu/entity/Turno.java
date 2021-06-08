@@ -42,7 +42,103 @@ public class Turno {
 	@ManyToMany(mappedBy = "turnos")
 	private List<Contratista> contratistas;
 	@ManyToOne
-	@JoinColumn(name="K_IDJORNADA")
+	@JoinColumn(name = "K_IDJORNADA")
 	private Jornada jornada;
+
+	public Integer getIdTurno() {
+		return idTurno;
+	}
+
+	public void setIdTurno(Integer idTurno) {
+		this.idTurno = idTurno;
+	}
+
+	public Date getFechaInicio() {
+		return fechaInicio;
+	}
+
+	public void setFechaInicio(Date fechaInicio) {
+		this.fechaInicio = fechaInicio;
+	}
+
+	public Date getFechaFin() {
+		return fechaFin;
+	}
+
+	public void setFechaFin(Date fechaFin) {
+		this.fechaFin = fechaFin;
+	}
+
+	public String getHoraInicio() {
+		return horaInicio;
+	}
+
+	public void setHoraInicio(String horaInicio) {
+		this.horaInicio = horaInicio;
+	}
+
+	public String getHoraFin() {
+		return horaFin;
+	}
+
+	public void setHoraFin(String horaFin) {
+		this.horaFin = horaFin;
+	}
+
+	public String getModificador() {
+		return modificador;
+	}
+
+	public void setModificador(String modificador) {
+		this.modificador = modificador;
+	}
+
+	public Date getFechaModificacion() {
+		return fechaModificacion;
+	}
+
+	public void setFechaModificacion(Date fechaModificacion) {
+		this.fechaModificacion = fechaModificacion;
+	}
+
+	public String getObservacion() {
+		return observacion;
+	}
+
+	public void setObservacion(String observacion) {
+		this.observacion = observacion;
+	}
+
+	public String getInicioTurno() {
+		return inicioTurno;
+	}
+
+	public void setInicioTurno(String inicioTurno) {
+		this.inicioTurno = inicioTurno;
+	}
+
+	public String getFinTurno() {
+		return finTurno;
+	}
+
+	public void setFinTurno(String finTurno) {
+		this.finTurno = finTurno;
+	}
+
+	public List<Contratista> getContratistas() {
+		return contratistas;
+	}
+
+	public void setContratistas(List<Contratista> contratistas) {
+		this.contratistas = contratistas;
+	}
+
+	public Jornada getJornada() {
+		return jornada;
+	}
+
+	public void setJornada(Jornada jornada) {
+		this.jornada = jornada;
+	}
 
 }

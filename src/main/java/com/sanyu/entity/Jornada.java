@@ -1,6 +1,5 @@
 package com.sanyu.entity;
 
-
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -25,7 +24,32 @@ public class Jornada {
 	@Column(name = "N_NOMBREJORNADA")
 	private String nombreJornada;
 	@JsonIgnore
-	@OneToMany(mappedBy = "turno", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "idTurno", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@Column(name = "K_IDTURNO", nullable = false)
 	Set<Turno> turno;
+
+	public Integer getIdJornada() {
+		return idJornada;
+	}
+
+	public void setIdJornada(Integer idJornada) {
+		this.idJornada = idJornada;
+	}
+
+	public String getNombreJornada() {
+		return nombreJornada;
+	}
+
+	public void setNombreJornada(String nombreJornada) {
+		this.nombreJornada = nombreJornada;
+	}
+
+	public Set<Turno> getTurno() {
+		return turno;
+	}
+
+	public void setTurno(Set<Turno> turno) {
+		this.turno = turno;
+	}
+
 }
