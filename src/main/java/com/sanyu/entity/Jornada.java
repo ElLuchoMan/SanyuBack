@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "Jornada")
+@Table(name = "JORNADA")
 public class Jornada {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,10 +23,20 @@ public class Jornada {
 	private Integer idJornada;
 	@Column(name = "N_NOMBREJORNADA")
 	private String nombreJornada;
+	@Column(name = "O_ESTADOJORNADA")
+	private String estadoJornada;
 	@JsonIgnore
 	@OneToMany(mappedBy = "idTurno", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@Column(name = "K_IDTURNO", nullable = false)
 	Set<Turno> turno;
+
+	public String getEstadoJornada() {
+		return estadoJornada;
+	}
+
+	public void setEstadoJornada(String estadoJornada) {
+		this.estadoJornada = estadoJornada;
+	}
 
 	public Integer getIdJornada() {
 		return idJornada;

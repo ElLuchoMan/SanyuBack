@@ -16,5 +16,6 @@ public interface TurnoRepository extends JpaRepository<Turno, Integer> {
 	//boolean existById(Integer idTurno);
 
 	void deleteById(Integer idTurno);
+	public Turno save(Turno turno);
 
 }

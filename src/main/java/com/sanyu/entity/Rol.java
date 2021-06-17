@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "Rol")
+@Table(name = "ROL")
 public class Rol {
 
 	@Id
@@ -24,10 +24,20 @@ public class Rol {
 	private Integer idRol;
 	@Column(name = "N_NOMBREROL", nullable = false, unique = true)
 	private String nombreRol;
+	@Column(name = "O_ESTADOROL", nullable = false, unique = true)
+	private String estadoRol;
 	@JsonIgnore
 	@OneToMany(mappedBy = "documento", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@Column(name = "K_DOCUMENTO", nullable = false)
 	Set<Contratista> contratista;
+
+	public String getEstadoRol() {
+		return estadoRol;
+	}
+
+	public void setEstadoRol(String estadoRol) {
+		this.estadoRol = estadoRol;
+	}
 
 	public Integer getIdRol() {
 		return idRol;

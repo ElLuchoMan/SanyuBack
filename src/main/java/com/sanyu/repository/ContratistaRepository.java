@@ -18,7 +18,7 @@ public interface ContratistaRepository extends JpaRepository<Contratista, Number
 
 	void deleteById(Number documento);
 
-	@Query(value = "SELECT FROM Turno JOIN Contratista ON Contratista.idTurno = turno.idTurno")
-	public List<Contratista> findByContratista(@Param("documento") Integer documento);
+	//@Query(value = "SELECT FROM Turno JOIN Contratista ON Contratista.idTurno = turno.idTurno")
+	//public List<Contratista> findByContratista(@Param("documento") Integer documento);
 
 }

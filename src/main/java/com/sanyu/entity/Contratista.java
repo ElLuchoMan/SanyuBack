@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Contratista")
+@Table(name = "CONTRATISTA")
 public class Contratista {
 
 	@Id
@@ -26,19 +26,37 @@ public class Contratista {
 	private String nombre;
 	@Column(name = "O_TELEFONO", nullable = false, unique = true)
 	private String telefono;
+	@Column(name = "O_ESTADOCONTRATISTA", nullable = false, unique = true)
+	private String estadoContratista;
 	@ManyToOne
 	@JoinColumn(name = "K_IDROL")
 	private Rol rol;
 	// @JsonIgnore
-	@JoinTable(name = "TURNO_CONTRATISTA", joinColumns = @JoinColumn(name = "K_DOCUMENTO", nullable = false), inverseJoinColumns = @JoinColumn(name = "K_IDTURNO", nullable = false))
+	@JoinTable(name = "TURNO_CONTRATISTA", joinColumns = @JoinColumn(name = "K_DOCUMENTO", nullable = true), inverseJoinColumns = @JoinColumn(name = "K_IDTURNO", nullable = true))
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Turno> turnos;
+
+	public String getEstadoContratista() {
+		return estadoContratista;
+	}
+
+	public void setEstadoContratista(String estadoContratista) {
+		this.estadoContratista = estadoContratista;
+	}
 
 	public void agregarTurnos(Turno turno) {
 		if (this.turnos == null) {
 			this.turnos = new ArrayList<>();
 		}
 		this.turnos.add(turno);
+	}
+
+	public String getEstado() {
+		return estadoContratista;
+	}
+
+	public void setEstado(String estadoContratista) {
+		this.estadoContratista = estadoContratista;
 	}
 
 	public Integer getDocumento() {
