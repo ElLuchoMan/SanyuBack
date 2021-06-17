@@ -10,21 +10,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sanyu.entity.Rol;
-import com.sanyu.service.RolService;
+import com.sanyu.entity.Jornada;
+import com.sanyu.service.JornadaService;
 
 import io.swagger.annotations.ApiOperation;
+
 @RestController
-@RequestMapping("/api/roles")
+@RequestMapping("/api/jornadas")
 @CrossOrigin(origins = "*")
-public class RolController {
+public class JornadaController {
 	@Autowired
-	RolService rolService;
+	JornadaService jornadaService;
 
 	@GetMapping("/")
-	@ApiOperation(value = "Método que trae todos los roles")
-	public ResponseEntity<List<Rol>> getLista() {
-		List<Rol> lista = rolService.obtenerTodos();
-		return new ResponseEntity<List<Rol>>(lista, HttpStatus.OK);
+	@ApiOperation(value = "Método que trae todas las jornadas")
+	public ResponseEntity<List<Jornada>> getLista() {
+		List<Jornada> lista = jornadaService.obtenerTodos();
+		return new ResponseEntity<List<Jornada>>(lista, HttpStatus.OK);
 	}
 }
