@@ -46,13 +46,22 @@ public class ContratistaController {
 		return new ResponseEntity<Contratista>(contratista, HttpStatus.OK);
 	}
 
-	/*@GetMapping("/turnos/{documento}")
+	// Traer turnos de un contratista
+	@GetMapping("/turnos/{documento}")
 	@ApiOperation(value = "Método que trae los turnos de un contratista mediante su documento")
-	public ResponseEntity<List<Contratista>> getTurnos(@PathVariable Integer documento){
+	public ResponseEntity<List<Contratista>> getTurnos(@PathVariable Integer documento) {
 		List<Contratista> contratista = contratistaService.findByContratista(documento);
 		return new ResponseEntity<List<Contratista>>(contratista, HttpStatus.OK);
 	}
-*/
+
+	// Traer información de contratistas sin turno
+	@GetMapping("/SinTurno")
+	@ApiOperation(value = "Método que trae los contratistas sin turno")
+	public ResponseEntity<List<Contratista>> getSinTurnos() {
+		List<Contratista> contratista = contratistaService.contratistaSinTurno();
+		return new ResponseEntity<List<Contratista>>(contratista, HttpStatus.OK);
+	}
+
 	@PostMapping("/nuevo")
 	@ApiOperation(value = "Método que permite registrar a un contratista")
 	public ResponseEntity<?> create(@RequestBody Contratista contratista) {

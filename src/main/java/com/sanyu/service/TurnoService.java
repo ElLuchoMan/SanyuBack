@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.sanyu.entity.Contratista;
 import com.sanyu.entity.Turno;
+import com.sanyu.repository.ContratistaRepository;
 import com.sanyu.repository.TurnoRepository;
 
 @Service
@@ -48,4 +49,5 @@ public class TurnoService {
 		return turnoRepository.findById(documento);
 	}
 
+	
 }
