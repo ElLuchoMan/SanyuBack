@@ -36,7 +36,7 @@ public class TurnoController {
 	@ApiOperation(value = "Método que permite crear un turno")
 	public ResponseEntity<?> create(@RequestBody Turno turno) {
 		turnoService.save(turno);
-		return new ResponseEntity(new Mensaje("producto guardado"), HttpStatus.CREATED);
+		return new ResponseEntity(new Mensaje("turno creado"), HttpStatus.CREATED);
 	}
 
 	// Leer turno
