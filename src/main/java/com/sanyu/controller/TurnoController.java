@@ -35,9 +35,8 @@ public class TurnoController {
 	@PostMapping
 	@ApiOperation(value = "Método que permite crear un turno")
 	public ResponseEntity<?> create(@RequestBody Turno turno) {
-		// return
-		// ResponseEntity.status(HttpStatus.CREATED).body(turnoService.save(turno));
-		return null;
+		turnoService.save(turno);
+		return new ResponseEntity(new Mensaje("producto guardado"), HttpStatus.CREATED);
 	}
 
 	// Leer turno
@@ -71,7 +70,7 @@ public class TurnoController {
 		 */
 		return null;
 	}
-	
+
 	// Borrar turno
 	@DeleteMapping("/{idTurno}")
 	@ApiOperation(value = "Método que permite borrar un turno mediante su id")
