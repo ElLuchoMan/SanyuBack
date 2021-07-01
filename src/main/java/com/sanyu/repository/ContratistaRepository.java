@@ -18,7 +18,7 @@ public interface ContratistaRepository extends JpaRepository<Contratista, Number
 
 	void deleteById(Number documento);
 
-	@Query(value = "SELECT c.* FROM contratista c WHERE NOT EXISTS (SELECT * FROM turno_contratista t  WHERE t.k_documento = c.k_documento ) AND c.o_estadocontratista='Activo'", nativeQuery = true)
+	@Query(value = "SELECT c.* FROM contratista c WHERE NOT EXISTS (SELECT * FROM turno_contratista t  WHERE t.k_documento = c.k_documento ) AND c.o_estadocontratista='Activo' AND c.k_idrol !=1", nativeQuery = true)
 	public List<Contratista> contratistaSinTurno();
 
 	@Query(value = "SELECT * FROM turno_contratista, contratista WHERE contratista.k_documento=:documento AND turno_contratista.k_documento=contratista.k_documento", nativeQuery = true)
