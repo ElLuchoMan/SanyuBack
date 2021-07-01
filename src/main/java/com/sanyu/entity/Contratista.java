@@ -35,76 +35,48 @@ public class Contratista {
 	@JoinTable(name = "TURNO_CONTRATISTA", joinColumns = @JoinColumn(name = "K_DOCUMENTO", nullable = true), inverseJoinColumns = @JoinColumn(name = "K_IDTURNO", nullable = true))
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Turno> turnos;
-
-	public String getEstadoContratista() {
-		return estadoContratista;
-	}
-
-	public void setEstadoContratista(String estadoContratista) {
-		this.estadoContratista = estadoContratista;
-	}
-
-	public void agregarTurnos(Turno turno) {
-		if (this.turnos == null) {
-			this.turnos = new ArrayList<>();
-		}
-		this.turnos.add(turno);
-	}
-
-	public String getEstado() {
-		return estadoContratista;
-	}
-
-	public void setEstado(String estadoContratista) {
-		this.estadoContratista = estadoContratista;
-	}
-
 	public Integer getDocumento() {
 		return documento;
 	}
-
 	public void setDocumento(Integer documento) {
 		this.documento = documento;
 	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getTelefono() {
-		return telefono;
-	}
-
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
-	}
-
 	public String getPassword() {
 		return password;
 	}
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public String getTelefono() {
+		return telefono;
+	}
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+	public String getEstadoContratista() {
+		return estadoContratista;
+	}
+	public void setEstadoContratista(String estadoContratista) {
+		this.estadoContratista = estadoContratista;
+	}
+	public Rol getRol() {
+		return rol;
+	}
+	public void setRol(Rol rol) {
+		this.rol = rol;
+	}
 	public List<Turno> getTurnos() {
 		return turnos;
 	}
-
 	public void setTurnos(List<Turno> turnos) {
 		this.turnos = turnos;
 	}
 
-	public Rol getRol() {
-		return rol;
-	}
-
-	public void setRol(Rol rol) {
-		this.rol = rol;
-	}
 
 }
