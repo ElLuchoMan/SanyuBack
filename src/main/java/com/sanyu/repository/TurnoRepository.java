@@ -23,4 +23,8 @@ public interface TurnoRepository extends JpaRepository<Turno, Integer> {
 
 	public Turno save(Turno turno);
 
+	@Query(value = "SELECT DISTINCT t.* FROM contratista c, turno t, turno_contratista tc where tc.k_documento = c.k_documento AND c.k_documento=:documento AND t.o_estado='Activo'", nativeQuery = true)
+	//
+	public List<Turno> findByContratista(@Param("documento") Integer documento);
+
 }

@@ -48,6 +48,9 @@ public class TurnoService {
 	public Optional<Turno> obtenerPorId(Integer documento) {
 		return turnoRepository.findById(documento);
 	}
+	public List<Turno> findByContratista(Integer documento) {
+		return turnoRepository.findByContratista(documento);
+	}
 
 	
 }
