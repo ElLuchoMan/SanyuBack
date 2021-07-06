@@ -24,7 +24,6 @@ public class Turno {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TurnoSec")
 	@Column(name = "K_IDTURNO")
 	private Integer idTurno;
-
 	@Column(name = "H_HORAINICIO", nullable = false)
 	private String horaInicio;
 	@Column(name = "H_HORAFIN", nullable = false)

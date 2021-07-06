@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sanyu.DTO.Mensaje;
-import com.sanyu.entity.Contratista;
 import com.sanyu.entity.Turno;
 import com.sanyu.service.TurnoService;
 
@@ -35,7 +34,7 @@ public class TurnoController {
 	@PostMapping
 	@ApiOperation(value = "Método que permite crear un turno")
 	public ResponseEntity<?> create(@RequestBody Turno turno) {
-		turnoService.save(turno);
+		turnoService.guardar(turno);
 		return new ResponseEntity(new Mensaje("turno creado"), HttpStatus.CREATED);
 	}
 
@@ -45,30 +44,29 @@ public class TurnoController {
 	@ApiOperation(value = "Método que trae a un turno mediante su id")
 	public ResponseEntity<Turno> getOne(@PathVariable(value = "idTurno") Integer idTurno) {
 		// Valida si existe una persona con ese documento
-		if (!turnoService.existsById(idTurno))
+		if (!turnoService.existsByIdTurno(idTurno))
 			return new ResponseEntity(new Mensaje("No existe un turno con ese ID"), HttpStatus.NOT_FOUND);
 		Turno turno = turnoService.obtenerPorId(idTurno).get();
 		return new ResponseEntity<Turno>(turno, HttpStatus.OK);
 	}
 
 	// actualizar turno
-	@PutMapping("/{idTurno}")
-	@ApiOperation(value = "Método que permite actualizar un turno")
-	public ResponseEntity<?> update(@RequestBody Turno turnoDetails, @PathVariable(value = "idTurno") Integer idTurno) {
-		Optional<Turno> turno = turnoService.findById(idTurno);
-		if (!turno.isPresent()) {
-			return ResponseEntity.notFound().build();
-		}
-		// BeanUtils.copyProperties(userDetails, user.get());
-		/*
-		 * turno.get().setName(userDetails.getName());
-		 * turno.get().setLastname(userDetails.getLastname());
-		 * turno.get().setEmail(userDetails.getEmail());
-		 * turno.get().setEnabled(userDetails.getEnabled()); return
-		 * ResponseEntity.status(HttpStatus.CREATED).body(turnoService.save(turno.get())
-		 * );
-		 */
-		return null;
+	@PutMapping("/actualizar/{idTurno}")
+	@ApiOperation(value = "Método que permite actualizar un turno mediante su id")
+	public ResponseEntity<?> update(@RequestBody Turno turno, @PathVariable("idTurno") Integer idTurno) {
+		if (!turnoService.existsByIdTurno(idTurno))
+			return new ResponseEntity(new Mensaje("No existe ese turno"), HttpStatus.NOT_FOUND);
+		Turno turnoDetails = turnoService.obtenerPorId(idTurno).get();
+		turnoDetails.setFinTurno(turno.getFinTurno());
+		turnoDetails.setHoraFin(turno.getHoraFin());
+		turnoDetails.setHoraInicio(turno.getHoraInicio());
+		turnoDetails.setIdTurno(turno.getIdTurno());
+		turnoDetails.setInicioTurno(turno.getInicioTurno());
+		turnoDetails.setLabor(turno.getLabor());
+		turnoDetails.setModificador(turno.getModificador());
+		turnoDetails.setObservacion(turno.getObservacion());
+		turnoService.guardar(turnoDetails);
+		return new ResponseEntity(new Mensaje("Turno actualizado"), HttpStatus.CREATED);
 	}
 
 	// Borrar turno
@@ -89,6 +87,8 @@ public class TurnoController {
 		List<Turno> lista = turnoService.obtenerTodos();
 		return new ResponseEntity<List<Turno>>(lista, HttpStatus.OK);
 	}
+
+	// Cargar los turnos de un contratista
 	@GetMapping("/turno/{documento}")
 	@ApiOperation(value = "Método que trae los turnos de un contratista mediante su documento")
 	public ResponseEntity<List<Turno>> getTurnoContratista(@PathVariable Integer documento) {

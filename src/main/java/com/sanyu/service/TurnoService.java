@@ -8,9 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sanyu.entity.Contratista;
 import com.sanyu.entity.Turno;
-import com.sanyu.repository.ContratistaRepository;
 import com.sanyu.repository.TurnoRepository;
 
 @Service
@@ -23,7 +21,7 @@ public class TurnoService {
 		return turnoRepository.findById(idTurno);
 	}
 
-	public void save(Turno turno) {
+	public void guardar(Turno turno) {
 		turnoRepository.save(turno);
 	}
 
@@ -41,16 +39,16 @@ public class TurnoService {
 
 	}
 
-	public boolean existsById(Integer idTurno) {
-		return turnoRepository.existsById(idTurno);
+	public boolean existsByIdTurno(Integer idTurno) {
+		return turnoRepository.existsByIdTurno(idTurno);
 	}
 
 	public Optional<Turno> obtenerPorId(Integer documento) {
 		return turnoRepository.findById(documento);
 	}
+
 	public List<Turno> findByContratista(Integer documento) {
 		return turnoRepository.findByContratista(documento);
 	}
 
-	
 }
