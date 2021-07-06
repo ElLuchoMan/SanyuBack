@@ -63,6 +63,7 @@ public class TurnoController {
 		turnoDetails.setIdTurno(turno.getIdTurno());
 		turnoDetails.setInicioTurno(turno.getInicioTurno());
 		turnoDetails.setLabor(turno.getLabor());
+		turnoDetails.setFechaModificacion(turno.getFechaModificacion());
 		turnoDetails.setModificador(turno.getModificador());
 		turnoDetails.setObservacion(turno.getObservacion());
 		turnoService.guardar(turnoDetails);
