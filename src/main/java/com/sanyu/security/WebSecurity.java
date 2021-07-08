@@ -1,4 +1,4 @@
-package com.sanyu;
+package com.sanyu.security;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 

@@ -1,7 +1,7 @@
 package com.sanyu.entity;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,6 +12,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "CONTRATISTA")
@@ -30,7 +31,7 @@ public class Contratista {
 	private String estadoContratista;
 	@ManyToOne
 	@JoinColumn(name = "K_IDROL")
-	private Rol rol;
+	private Set<Rol> rol;
 	// @JsonIgnore
 	@JoinTable(name = "TURNO_CONTRATISTA", joinColumns = @JoinColumn(name = "K_DOCUMENTO", nullable = true), inverseJoinColumns = @JoinColumn(name = "K_IDTURNO", nullable = true))
 	@ManyToMany(cascade = CascadeType.ALL)
@@ -65,10 +66,11 @@ public class Contratista {
 	public void setEstadoContratista(String estadoContratista) {
 		this.estadoContratista = estadoContratista;
 	}
-	public Rol getRol() {
+
+	public Set<Rol> getRol() {
 		return rol;
 	}
-	public void setRol(Rol rol) {
+	public void setRol(Set<Rol> rol) {
 		this.rol = rol;
 	}
 	public List<Turno> getTurnos() {
