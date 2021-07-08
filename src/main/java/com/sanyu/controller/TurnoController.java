@@ -57,6 +57,7 @@ public class TurnoController {
 		if (!turnoService.existsByIdTurno(idTurno))
 			return new ResponseEntity(new Mensaje("No existe ese turno"), HttpStatus.NOT_FOUND);
 		Turno turnoDetails = turnoService.obtenerPorId(idTurno).get();
+		turnoDetails.setEstadoTurno(turno.getEstadoTurno());
 		turnoDetails.setFinTurno(turno.getFinTurno());
 		turnoDetails.setHoraFin(turno.getHoraFin());
 		turnoDetails.setHoraInicio(turno.getHoraInicio());
