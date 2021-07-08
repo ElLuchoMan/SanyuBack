@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sanyu.service.ContratistaService;
 import com.sanyu.DTO.Mensaje;
 import com.sanyu.entity.Contratista;
-import com.sanyu.entity.Turno;
 
 import io.swagger.annotations.ApiOperation;
 

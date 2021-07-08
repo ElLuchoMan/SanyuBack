@@ -50,9 +50,4 @@ public class ContratistaService {
 	public List<Contratista> contratistaSinTurno() {
 		return contratistaRepository.contratistaSinTurno();
 	}
-
-	public Optional<Contratista> findByLogin(Integer documento, String password) {
-		return contratistaRepository.findByLogin(documento, password);
-	}
-
 }
