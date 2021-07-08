@@ -11,5 +11,5 @@ import com.sanyu.entity.Rol;
 public interface RolRepository extends JpaRepository<Rol, Integer> {
 	Optional<Rol> findById(Integer idRol);
 
-	Optional<Rol> findByRolNombre(String nombreRol);
+	Optional<Rol> findByNombreRol(String nombreRol);
 }

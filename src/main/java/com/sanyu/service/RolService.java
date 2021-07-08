@@ -22,7 +22,7 @@ public class RolService {
 		return lista;
 	}
 
-	public Optional<Rol> getByRolNombre(String nombreRol) {
-		return rolRepository.findByRolNombre(nombreRol);
+	public Optional<Rol> getByNombreRol(String nombreRol) {
+		return rolRepository.findByNombreRol(nombreRol);
 	}
 }
