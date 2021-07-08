@@ -1,6 +1,7 @@
 package com.sanyu.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -19,5 +20,9 @@ public class RolService {
 	public List<Rol> obtenerTodos() {
 		List<Rol> lista = rolRepository.findAll();
 		return lista;
+	}
+
+	public Optional<Rol> getByRolNombre(String nombreRol) {
+		return rolRepository.findByRolNombre(nombreRol);
 	}
 }
