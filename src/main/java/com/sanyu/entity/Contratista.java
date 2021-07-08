@@ -31,7 +31,7 @@ public class Contratista {
 	private String estadoContratista;
 	@ManyToOne
 	@JoinColumn(name = "K_IDROL")
-	private Set<Rol> rol;
+	public Rol rol;
 	// @JsonIgnore
 	@JoinTable(name = "TURNO_CONTRATISTA", joinColumns = @JoinColumn(name = "K_DOCUMENTO", nullable = true), inverseJoinColumns = @JoinColumn(name = "K_IDTURNO", nullable = true))
 	@ManyToMany(cascade = CascadeType.ALL)
@@ -67,10 +67,11 @@ public class Contratista {
 		this.estadoContratista = estadoContratista;
 	}
 
-	public Set<Rol> getRol() {
+	
+	public Rol getRol() {
 		return rol;
 	}
-	public void setRol(Set<Rol> rol) {
+	public void setRol(Rol rol) {
 		this.rol = rol;
 	}
 	public List<Turno> getTurnos() {
