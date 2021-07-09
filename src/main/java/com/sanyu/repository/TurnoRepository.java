@@ -20,10 +20,10 @@ public interface TurnoRepository extends JpaRepository<Turno, Integer> {
 
 	void deleteById(Integer idTurno);
 
-	@Query(value = "SELECT DISTINCT t.* FROM contratista c, turno t, turno_contratista tc where tc.k_documento = c.k_documento AND c.k_documento=:documento AND t.o_estado='Activo'", nativeQuery = true)
+	@Query(value = "SELECT t.* FROM contratista c INNER JOIN turno_contratista tc ON c.k_documento=tc.k_documento INNER JOIN turno t ON t.k_idturno=tc.k_idturno AND c.k_documento=:documento AND t.o_estado='Activo'", nativeQuery = true)
 	//
 	public List<Turno> findByContratista(@Param("documento") Integer documento);
 	
-	@Query(value = "SELECT t.* FROM contratista c INNER JOIN turno_contratista tc ON c.k_documento=tc.k_documento INNER JOIN turno t ON t.k_idturno=tc.k_idturno AND c.k_documento=:documento AND t.f_fechainicio=to_char(current_date)", nativeQuery = true)
+	@Query(value = "SELECT t.* FROM contratista c INNER JOIN turno_contratista tc ON c.k_documento=tc.k_documento INNER JOIN turno t ON t.k_idturno=tc.k_idturno AND c.k_documento=:documento AND t.f_fechainicio=to_char(current_date) AND t.o_estado='Activo'", nativeQuery = true)
 	public Turno findByTurno(@Param("documento") Integer documento);
 }
