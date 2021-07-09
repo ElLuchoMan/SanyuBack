@@ -43,10 +43,6 @@ public class ContratistaService {
 		contratistaRepository.deleteById(documento);
 	}
 
-	public List<Contratista> findByContratista(Integer documento) {
-		return contratistaRepository.findByContratista(documento);
-	}
-
 	public List<Contratista> contratistaSinTurno() {
 		return contratistaRepository.contratistaSinTurno();
 	}
