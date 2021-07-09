@@ -51,4 +51,8 @@ public class TurnoService {
 		return turnoRepository.findByContratista(documento);
 	}
 
+	public Turno findByTurno(Integer documento) {
+		return turnoRepository.findByTurno(documento);
+	}
+
 }

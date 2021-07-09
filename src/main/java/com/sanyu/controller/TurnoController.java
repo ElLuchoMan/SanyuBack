@@ -97,4 +97,10 @@ public class TurnoController {
 		List<Turno> contratista = turnoService.findByContratista(documento);
 		return new ResponseEntity<List<Turno>>(contratista, HttpStatus.OK);
 	}
+	@GetMapping("/turnoHoy/{documento}")
+	@ApiOperation(value = "Método que trae el turno del día para un contratista mediante su documento")
+	public ResponseEntity<Turno> getTurnoHoyContratista(@PathVariable Integer documento) {
+		Turno contratista = turnoService.findByTurno(documento);
+		return new ResponseEntity<Turno>(contratista, HttpStatus.OK);
+	}
 }
