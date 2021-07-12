@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sanyu.entity.Compania;
-import com.sanyu.entity.Turno;
 import com.sanyu.repository.CompaniaRepository;
 
 @Service
@@ -25,6 +24,7 @@ public class CompaniaService {
 	public boolean existstById(Integer nitCompania) {
 		return companiaRepository.existsById(nitCompania);
 	}
+
 	public List<Compania> obtenerTodos() {
 		List<Compania> lista = companiaRepository.findAll();
 		return lista;

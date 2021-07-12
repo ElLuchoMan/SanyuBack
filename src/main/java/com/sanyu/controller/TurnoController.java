@@ -1,7 +1,6 @@
 package com.sanyu.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,6 +30,7 @@ public class TurnoController {
 	TurnoService turnoService;
 
 	// crear turno
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@PostMapping
 	@ApiOperation(value = "Método que permite crear un turno")
 	public ResponseEntity<?> create(@RequestBody Turno turno) {
@@ -40,6 +40,7 @@ public class TurnoController {
 
 	// Leer turno
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@GetMapping("/{idTurno}")
 	@ApiOperation(value = "Método que trae a un turno mediante su id")
 	public ResponseEntity<Turno> getOne(@PathVariable(value = "idTurno") Integer idTurno) {
@@ -51,6 +52,7 @@ public class TurnoController {
 	}
 
 	// actualizar turno
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@PutMapping("/actualizar/{idTurno}")
 	@ApiOperation(value = "Método que permite actualizar un turno mediante su id")
 	public ResponseEntity<?> update(@RequestBody Turno turno, @PathVariable("idTurno") Integer idTurno) {
@@ -97,6 +99,7 @@ public class TurnoController {
 		List<Turno> contratista = turnoService.findByContratista(documento);
 		return new ResponseEntity<List<Turno>>(contratista, HttpStatus.OK);
 	}
+
 	@GetMapping("/turnoHoy/{documento}")
 	@ApiOperation(value = "Método que trae el turno del día para un contratista mediante su documento")
 	public ResponseEntity<Turno> getTurnoHoyContratista(@PathVariable Integer documento) {

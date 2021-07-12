@@ -35,6 +35,7 @@ public class ContratistaController {
 		return new ResponseEntity<List<Contratista>>(lista, HttpStatus.OK);
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@GetMapping("/{documento}")
 	@ApiOperation(value = "Método que trae a un contratista mediante su documento")
 	public ResponseEntity<Contratista> getOne(@PathVariable Integer documento) {
@@ -53,6 +54,7 @@ public class ContratistaController {
 		return new ResponseEntity<List<Contratista>>(contratista, HttpStatus.OK);
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@PostMapping("/nuevo")
 	@ApiOperation(value = "Método que permite registrar a un contratista")
 	public ResponseEntity<?> create(@RequestBody Contratista contratista) {
@@ -69,6 +71,7 @@ public class ContratistaController {
 		return new ResponseEntity(new Mensaje("Persona guardada"), HttpStatus.CREATED);
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@PutMapping("/actualizar/{documento}")
 	@ApiOperation(value = "Método que permite actualizar un contratista mediante su documento")
 	public ResponseEntity<?> update(@RequestBody Contratista contratista,
