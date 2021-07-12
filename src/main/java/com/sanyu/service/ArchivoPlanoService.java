@@ -24,7 +24,6 @@ public class ArchivoPlanoService {
 	public TurnoService turnoService;
 	private String carpeta = "src/main/java/archivos/";
 
-//metodo para guardar archivo
 	public String guardar(MultipartFile file) throws IOException {
 		byte[] bytes = file.getBytes();
 		Path path = Paths.get(carpeta + file.getOriginalFilename());
@@ -41,12 +40,13 @@ public class ArchivoPlanoService {
 				auxRegistros++;
 				String[] columna = registro.split(",");
 				if (auxRegistros == 1) {
-					turnoMasivo.setIdTurno(Integer.parseInt(columna[0]));
+					turnoMasivo.setIdTurno(null);
 					turnoMasivo.setFechaInicio(Date.valueOf(columna[1]));
+					turnoMasivo.setFechaFin(Date.valueOf(columna[1]));
 					turnoMasivo.setHoraInicio(String.valueOf(columna[2]));
 					turnoMasivo.setHoraFin(String.valueOf(columna[3]));
 					turnoMasivo.setLabor(String.valueOf(columna[4]));
-					// turno.setJornada(jornada.valueOf(columna[4]));
+					// turno.setJornada(jornada.valueOf(columna[5]));
 					turnoService.guardar(turnoMasivo);
 				}
 			}
