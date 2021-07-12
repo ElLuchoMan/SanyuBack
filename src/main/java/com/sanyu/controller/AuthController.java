@@ -18,9 +18,12 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/api/auth")
 @CrossOrigin(origins = "*")
 public class AuthController {
+	// Servicio a utilizar
 	@Autowired
 	LoginService loginService;
 
+	// Método para comparar información de inicio de sesión traida en el Body con la
+	// información almacenada en DB
 	@PostMapping
 	@ApiOperation(value = "Método para iniciar sesión")
 	public UsuarioLogeado Login(@RequestBody Credenciales credenciales) {

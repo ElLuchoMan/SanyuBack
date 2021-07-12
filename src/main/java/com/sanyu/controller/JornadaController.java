@@ -19,9 +19,11 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/api/jornadas")
 @CrossOrigin(origins = "*")
 public class JornadaController {
+	// Servicio a utilizar
 	@Autowired
 	JornadaService jornadaService;
 
+	// Método que trae todas las jornadas
 	@GetMapping("/")
 	@ApiOperation(value = "Método que trae todas las jornadas")
 	public ResponseEntity<List<Jornada>> getLista() {

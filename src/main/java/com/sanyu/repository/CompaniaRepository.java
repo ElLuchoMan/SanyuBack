@@ -9,7 +9,6 @@ import com.sanyu.entity.Compania;
 
 @Repository
 public interface CompaniaRepository extends JpaRepository<Compania, Integer> {
-
+	// Método para encontrar una compania mediante su NIT
 	Optional<Compania> findById(Integer nitCompania);
-
 }

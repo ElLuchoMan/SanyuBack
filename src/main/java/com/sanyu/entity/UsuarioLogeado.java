@@ -2,6 +2,7 @@ package com.sanyu.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+//Clase que permite crear un objeto de respuesta cuando el usuario ha logueado correctamente
 public class UsuarioLogeado {
 	@JsonProperty("documento")
 	private Integer documento = null;

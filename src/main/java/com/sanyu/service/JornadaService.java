@@ -13,9 +13,11 @@ import com.sanyu.repository.JornadaRepository;
 @Service
 @Transactional
 public class JornadaService {
+	// Repositorio a utilizar
 	@Autowired
 	JornadaRepository jornadaRepository;
 
+	//Obtener todas las jornadas
 	public List<Jornada> obtenerTodos() {
 		List<Jornada> lista = jornadaRepository.findAll();
 		return lista;

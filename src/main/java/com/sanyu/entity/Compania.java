@@ -18,29 +18,37 @@ public class Compania {
 	private String telefonoCompania;
 	@Column(name = "O_DIRECCION", nullable = false, unique = true)
 	private String direccion;
+
 	public Integer getNitCompania() {
 		return nitCompania;
 	}
+
 	public void setNitCompania(Integer nitCompania) {
 		this.nitCompania = nitCompania;
 	}
+
 	public String getRazonSocial() {
 		return razonSocial;
 	}
+
 	public void setRazonSocial(String razonSocial) {
 		this.razonSocial = razonSocial;
 	}
+
 	public String getTelefonoCompania() {
 		return telefonoCompania;
 	}
+
 	public void setTelefonoCompania(String telefonoCompania) {
 		this.telefonoCompania = telefonoCompania;
 	}
+
 	public String getDireccion() {
 		return direccion;
 	}
+
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	
+
 }

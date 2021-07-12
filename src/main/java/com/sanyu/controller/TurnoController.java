@@ -25,11 +25,11 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/api/turnos")
 @CrossOrigin(origins = "*")
 public class TurnoController {
-
+	// Servicio a utilizar
 	@Autowired
 	TurnoService turnoService;
 
-	// crear turno
+	// Método que permite crear un turno
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@PostMapping
 	@ApiOperation(value = "Método que permite crear un turno")
@@ -38,8 +38,7 @@ public class TurnoController {
 		return new ResponseEntity(new Mensaje("turno creado"), HttpStatus.CREATED);
 	}
 
-	// Leer turno
-
+	// Método que trae a un turno mediante su id
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@GetMapping("/{idTurno}")
 	@ApiOperation(value = "Método que trae a un turno mediante su id")
@@ -47,18 +46,18 @@ public class TurnoController {
 		// Valida si existe una persona con ese documento
 		if (!turnoService.existsByIdTurno(idTurno))
 			return new ResponseEntity(new Mensaje("No existe un turno con ese ID"), HttpStatus.NOT_FOUND);
-		Turno turno = turnoService.obtenerPorId(idTurno).get();
+		Turno turno = turnoService.findById(idTurno).get();
 		return new ResponseEntity<Turno>(turno, HttpStatus.OK);
 	}
 
-	// actualizar turno
+	// Método que permite actualizar un turno mediante su id
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@PutMapping("/actualizar/{idTurno}")
 	@ApiOperation(value = "Método que permite actualizar un turno mediante su id")
 	public ResponseEntity<?> update(@RequestBody Turno turno, @PathVariable("idTurno") Integer idTurno) {
 		if (!turnoService.existsByIdTurno(idTurno))
 			return new ResponseEntity(new Mensaje("No existe ese turno"), HttpStatus.NOT_FOUND);
-		Turno turnoDetails = turnoService.obtenerPorId(idTurno).get();
+		Turno turnoDetails = turnoService.findById(idTurno).get();
 		turnoDetails.setEstadoTurno(turno.getEstadoTurno());
 		turnoDetails.setFinTurno(turno.getFinTurno());
 		turnoDetails.setHoraFin(turno.getHoraFin());
@@ -73,7 +72,7 @@ public class TurnoController {
 		return new ResponseEntity(new Mensaje("Turno actualizado"), HttpStatus.CREATED);
 	}
 
-	// Borrar turno
+	// Método que permite borrar un turno mediante su id
 	@DeleteMapping("/{idTurno}")
 	@ApiOperation(value = "Método que permite borrar un turno mediante su id")
 	public ResponseEntity<?> delete(@PathVariable(value = "idTurno") Integer idTurno) {
@@ -84,7 +83,7 @@ public class TurnoController {
 		return ResponseEntity.ok().build();
 	}
 
-	// Leer todos los turnos
+	// Método que trae la lista de todos los turnos registrados
 	@GetMapping("/")
 	@ApiOperation(value = "Método que trae la lista de todos los turnos registrados")
 	public ResponseEntity<List<Turno>> getLista() {
@@ -92,7 +91,7 @@ public class TurnoController {
 		return new ResponseEntity<List<Turno>>(lista, HttpStatus.OK);
 	}
 
-	// Cargar los turnos de un contratista
+	// Método que trae los turnos de un contratista mediante su document
 	@GetMapping("/turno/{documento}")
 	@ApiOperation(value = "Método que trae los turnos de un contratista mediante su documento")
 	public ResponseEntity<List<Turno>> getTurnoContratista(@PathVariable Integer documento) {
@@ -100,6 +99,7 @@ public class TurnoController {
 		return new ResponseEntity<List<Turno>>(contratista, HttpStatus.OK);
 	}
 
+	//Método que trae el turno del día para un contratista mediante su documento
 	@GetMapping("/turnoHoy/{documento}")
 	@ApiOperation(value = "Método que trae el turno del día para un contratista mediante su documento")
 	public ResponseEntity<Turno> getTurnoHoyContratista(@PathVariable Integer documento) {

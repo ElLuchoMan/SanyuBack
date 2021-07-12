@@ -14,13 +14,16 @@ import com.sanyu.entity.Rol;
 import com.sanyu.service.RolService;
 
 import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/api/roles")
 @CrossOrigin(origins = "*")
 public class RolController {
+	// Servicio a utilizar
 	@Autowired
 	RolService rolService;
 
+	// Método que trae todos los roles
 	@GetMapping("/")
 	@ApiOperation(value = "Método que trae todos los roles")
 	public ResponseEntity<List<Rol>> getLista() {

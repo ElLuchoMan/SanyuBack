@@ -2,6 +2,7 @@ package com.sanyu.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+//Clase que permite crear un objeto con documento y password para compararlo con la base de datos y permitir el login
 public class Credenciales {
 	@JsonProperty("documento")
 	private Integer documento = null;

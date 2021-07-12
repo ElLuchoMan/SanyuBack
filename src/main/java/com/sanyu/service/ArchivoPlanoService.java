@@ -20,14 +20,16 @@ import com.sanyu.repository.JornadaRepository;
 public class ArchivoPlanoService {
 	public Turno turnoMasivo = new Turno();
 	public Jornada jornada = new Jornada();
+	// Servicio a utilizar
 	@Autowired
 	public TurnoService turnoService;
+	// Repositorio para conocer la jornada cargada
 	@Autowired
 	public JornadaRepository jornadaRepository;
 	// Directorio donde se almacenarán los archivos
 	private String carpeta = "src/main/java/archivos/";
 
-	//Método para guardar los archivos
+	// Método para guardar los archivos
 	public String guardar(MultipartFile file) throws IOException {
 		byte[] bytes = file.getBytes();
 		Path path = Paths.get(carpeta + file.getOriginalFilename());
@@ -35,7 +37,7 @@ public class ArchivoPlanoService {
 		return path.toString();
 	}
 
-	//Método para registrar los datos del archivo
+	// Método para registrar los datos del archivo
 	@SuppressWarnings("resource")
 	public void subirArchivo(String txt) {
 		@SuppressWarnings("unused")
@@ -52,18 +54,17 @@ public class ArchivoPlanoService {
 				turnoMasivo.setHoraInicio(String.valueOf(columna[1]));
 				turnoMasivo.setHoraFin(String.valueOf(columna[2]));
 				turnoMasivo.setLabor(String.valueOf(columna[3]));
-				//Condición para saber si se registra o se actualiza turno
+				// Condición para saber si se registra o se actualiza turno
 				if (columna[4].equals("null")) {
 					turnoMasivo.setIdTurno(null);
-
 				} else {
 					turnoMasivo.setIdTurno(Integer.parseInt(columna[4]));
 				}
-				//Get de la jornada para asignarla en el turno
+				// Get de la jornada para asignarla en el turno
 				jornada = jornadaRepository.findById(Integer.parseInt(columna[5])).get();
 				turnoMasivo.setJornada(jornada);
 				turnoService.guardar(turnoMasivo);
-				//Se limpia el objeto para permitir inserción de todos los turnos disponibles
+				// Se limpia el objeto para permitir inserción de todos los turnos disponibles
 				turnoMasivo = null;
 			}
 		} catch (IOException e) {

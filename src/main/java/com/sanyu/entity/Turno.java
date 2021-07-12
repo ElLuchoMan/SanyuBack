@@ -18,8 +18,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "TURNO")
+//Se crea secuencia en Spring que corresponde a la secuencia creada en base de datos
 @SequenceGenerator(name = "TurnoSec", sequenceName = "TURNO_SEQ", initialValue = 1, allocationSize = 1)
 public class Turno {
+	// Se permite crear el id mediante la secuencia creada anteriormente
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TurnoSec")
 	@Column(name = "K_IDTURNO")

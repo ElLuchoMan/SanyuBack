@@ -19,9 +19,11 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/api/compania")
 @CrossOrigin(origins = "*")
 public class CompaniaController {
+	// Servicio a utilizar
 	@Autowired
 	CompaniaService companiaService;
 
+	// Método que permite traer la información de la compañía
 	@GetMapping("/")
 	@ApiOperation(value = "Método que trae toda la informacion de la compania")
 	public ResponseEntity<List<Compania>> getLista() {

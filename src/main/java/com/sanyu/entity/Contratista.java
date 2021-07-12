@@ -29,7 +29,6 @@ public class Contratista {
 	@ManyToOne
 	@JoinColumn(name = "K_IDROL")
 	public Rol rol;
-	// @JsonIgnore
 	@JoinTable(name = "TURNO_CONTRATISTA", joinColumns = @JoinColumn(name = "K_DOCUMENTO", nullable = true), inverseJoinColumns = @JoinColumn(name = "K_IDTURNO", nullable = true))
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Turno> turnos;

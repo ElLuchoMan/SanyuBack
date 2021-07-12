@@ -19,12 +19,16 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/api/turnosMasivos")
 @CrossOrigin(origins = "*")
 public class ArchivoPlanoController {
+	// Servicio a utilizar
 	@Autowired
 	private ArchivoPlanoService archivoSevice;
+
+	// Método post para cargar el archivo plano
 	@PostMapping
 	@ApiOperation(value = "Método que permite carga masiva de turnos")
 	public ResponseEntity<?> cargar(@RequestParam("turnos") MultipartFile archivo) {
 		try {
+			// Se sube el archivo tras ser guardado en localhost
 			archivoSevice.subirArchivo(archivoSevice.guardar(archivo));
 		} catch (IOException e) {
 			e.printStackTrace();

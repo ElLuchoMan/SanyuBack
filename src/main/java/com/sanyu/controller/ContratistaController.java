@@ -25,9 +25,11 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/api/contratistas")
 @CrossOrigin(origins = "*")
 public class ContratistaController {
+	// Servicio a utilizar
 	@Autowired
 	ContratistaService contratistaService;
 
+	// Método que trae la lista de todos los contratistas registrados
 	@GetMapping("/")
 	@ApiOperation(value = "Método que trae la lista de todos los contratistas")
 	public ResponseEntity<List<Contratista>> getLista() {
@@ -35,6 +37,7 @@ public class ContratistaController {
 		return new ResponseEntity<List<Contratista>>(lista, HttpStatus.OK);
 	}
 
+	// Método que trae a un contratista mediante su documento
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@GetMapping("/{documento}")
 	@ApiOperation(value = "Método que trae a un contratista mediante su documento")
@@ -54,6 +57,7 @@ public class ContratistaController {
 		return new ResponseEntity<List<Contratista>>(contratista, HttpStatus.OK);
 	}
 
+	// Método que permite registrar a un contratista
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@PostMapping("/nuevo")
 	@ApiOperation(value = "Método que permite registrar a un contratista")
@@ -71,6 +75,7 @@ public class ContratistaController {
 		return new ResponseEntity(new Mensaje("Persona guardada"), HttpStatus.CREATED);
 	}
 
+	// Método que permite actualizar un contratista mediante su documento
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@PutMapping("/actualizar/{documento}")
 	@ApiOperation(value = "Método que permite actualizar un contratista mediante su documento")
