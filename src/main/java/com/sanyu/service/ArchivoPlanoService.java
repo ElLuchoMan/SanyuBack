@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import com.sanyu.entity.Jornada;
 import com.sanyu.entity.Turno;
+import com.sanyu.repository.JornadaRepository;
 
 @Service
 public class ArchivoPlanoService {
@@ -22,6 +23,8 @@ public class ArchivoPlanoService {
 	public Jornada jornada = new Jornada();
 	@Autowired
 	public TurnoService turnoService;
+	@Autowired
+	public JornadaRepository jornadaRepository;
 	private String carpeta = "src/main/java/archivos/";
 
 	public String guardar(MultipartFile file) throws IOException {
@@ -37,18 +40,24 @@ public class ArchivoPlanoService {
 			BufferedReader buffer = new BufferedReader(new InputStreamReader(new FileInputStream(txt), "utf-8"));
 			String registro = "";
 			while ((registro = buffer.readLine()) != null) {
+				turnoMasivo = new Turno();
 				auxRegistros++;
 				String[] columna = registro.split(",");
-				if (auxRegistros == 1) {
+				turnoMasivo.setFechaInicio(Date.valueOf(columna[0]));
+				turnoMasivo.setFechaFin(Date.valueOf(columna[0]));
+				turnoMasivo.setHoraInicio(String.valueOf(columna[1]));
+				turnoMasivo.setHoraFin(String.valueOf(columna[2]));
+				turnoMasivo.setLabor(String.valueOf(columna[3]));
+				if (columna[4].equals("null")) {
 					turnoMasivo.setIdTurno(null);
-					turnoMasivo.setFechaInicio(Date.valueOf(columna[1]));
-					turnoMasivo.setFechaFin(Date.valueOf(columna[1]));
-					turnoMasivo.setHoraInicio(String.valueOf(columna[2]));
-					turnoMasivo.setHoraFin(String.valueOf(columna[3]));
-					turnoMasivo.setLabor(String.valueOf(columna[4]));
-					// turno.setJornada(jornada.valueOf(columna[5]));
-					turnoService.guardar(turnoMasivo);
+
+				} else {
+					turnoMasivo.setIdTurno(Integer.parseInt(columna[4]));
 				}
+				jornada = jornadaRepository.findById(Integer.parseInt(columna[5])).get();
+				turnoMasivo.setJornada(jornada);
+				turnoService.guardar(turnoMasivo);
+				turnoMasivo = null;
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
