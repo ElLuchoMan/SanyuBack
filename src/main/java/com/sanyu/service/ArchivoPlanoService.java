@@ -50,10 +50,11 @@ public class ArchivoPlanoService {
 				auxRegistros++;
 				String[] columna = registro.split(",");
 				turnoMasivo.setFechaInicio(Date.valueOf(columna[0]));
-				turnoMasivo.setFechaFin(Date.valueOf(columna[0]));
-				turnoMasivo.setHoraInicio(String.valueOf(columna[1]));
-				turnoMasivo.setHoraFin(String.valueOf(columna[2]));
-				turnoMasivo.setLabor(String.valueOf(columna[3]));
+				turnoMasivo.setFechaFin(Date.valueOf(columna[1]));
+				turnoMasivo.setHoraInicio(String.valueOf(columna[2]));
+				turnoMasivo.setHoraFin(String.valueOf(columna[3]));
+				turnoMasivo.setLabor(String.valueOf(columna[4]));
+				turnoMasivo.setEstadoTurno("Activo");
 				// Condición para saber si se registra o se actualiza turno
 				if (columna[4].equals("null")) {
 					turnoMasivo.setIdTurno(null);
