@@ -29,9 +29,9 @@ public class ContratistaService {
 		return contratistaRepository.existsByDocumento(documento);
 	}
 
-	// Método que permite listar todos los contratistas
+	// Método que permite listar todos los contratistas activos
 	public List<Contratista> obtenerTodos() {
-		List<Contratista> lista = contratistaRepository.findAll();
+		List<Contratista> lista = contratistaRepository.obtenerTodos();
 		return lista;
 	}
 

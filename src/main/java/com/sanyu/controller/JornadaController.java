@@ -23,7 +23,7 @@ public class JornadaController {
 	@Autowired
 	JornadaService jornadaService;
 
-	// Método que trae todas las jornadas
+	// Método que trae todas las jornadas activas
 	@GetMapping("/")
 	@ApiOperation(value = "Método que trae todas las jornadas")
 	public ResponseEntity<List<Jornada>> getLista() {

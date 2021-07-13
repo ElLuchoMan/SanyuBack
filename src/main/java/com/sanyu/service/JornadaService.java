@@ -17,9 +17,9 @@ public class JornadaService {
 	@Autowired
 	JornadaRepository jornadaRepository;
 
-	//Obtener todas las jornadas
+	//Obtener la lista de todas las jornadas activas
 	public List<Jornada> obtenerTodos() {
-		List<Jornada> lista = jornadaRepository.findAll();
+		List<Jornada> lista = jornadaRepository.obtenerTodos();
 		return lista;
 	}
 }

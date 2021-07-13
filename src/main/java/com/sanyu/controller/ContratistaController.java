@@ -29,9 +29,9 @@ public class ContratistaController {
 	@Autowired
 	ContratistaService contratistaService;
 
-	// Método que trae la lista de todos los contratistas registrados
+	// Método que trae la lista de todos los contratistas registrados que se encuentran activos
 	@GetMapping("/")
-	@ApiOperation(value = "Método que trae la lista de todos los contratistas")
+	@ApiOperation(value = "Método que trae la lista de todos los contratistas activos")
 	public ResponseEntity<List<Contratista>> getLista() {
 		List<Contratista> lista = contratistaService.obtenerTodos();
 		return new ResponseEntity<List<Contratista>>(lista, HttpStatus.OK);
