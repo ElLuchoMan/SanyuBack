@@ -24,8 +24,18 @@ public class TurnoService {
 	}
 
 	// Método que permite guardar un turno
-	public void guardar(Turno turno) {
-		turnoRepository.save(turno);
+	public Turno guardar(Turno turno) {
+		Turno turn = turnoRepository.save(turno);
+		return turn;
+	}
+
+	// Método que permite asignar un turno a un contratista
+	public void asignarContratista(Integer documento, Integer idTurno) {
+		try {
+			turnoRepository.asignarContratista(documento, idTurno);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 	}
 
 	// Método que permite hacer borrado físico de un turno
@@ -50,7 +60,8 @@ public class TurnoService {
 		return turnoRepository.findByContratista(documento);
 	}
 
-	// Método que permite traer la información de los turnos registrados para los contratistas
+	// Método que permite traer la información de los turnos registrados para los
+	// contratistas
 	public Turno findByTurno(Integer documento) {
 		return turnoRepository.findByTurno(documento);
 	}

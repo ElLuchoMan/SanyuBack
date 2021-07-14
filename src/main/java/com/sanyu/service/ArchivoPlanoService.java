@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import com.sanyu.entity.Jornada;
 import com.sanyu.entity.Turno;
+import com.sanyu.repository.ContratistaRepository;
 import com.sanyu.repository.JornadaRepository;
 
 @Service
@@ -28,6 +29,8 @@ public class ArchivoPlanoService {
 	public JornadaRepository jornadaRepository;
 	// Directorio donde se almacenarán los archivos
 	private String carpeta = "src/main/java/archivos/";
+	@Autowired
+	public ContratistaRepository contratistaRepository;
 
 	// Método para guardar los archivos
 	public String guardar(MultipartFile file) throws IOException {
@@ -56,15 +59,18 @@ public class ArchivoPlanoService {
 				turnoMasivo.setLabor(String.valueOf(columna[4]));
 				turnoMasivo.setEstadoTurno("Activo");
 				// Condición para saber si se registra o se actualiza turno
-				if (columna[4].equals("null")) {
+				if (columna[5].equals("null")) {
 					turnoMasivo.setIdTurno(null);
 				} else {
-					turnoMasivo.setIdTurno(Integer.parseInt(columna[4]));
+					turnoMasivo.setIdTurno(Integer.parseInt(columna[5]));
 				}
 				// Get de la jornada para asignarla en el turno
-				jornada = jornadaRepository.findById(Integer.parseInt(columna[5])).get();
+				jornada = jornadaRepository.findById(Integer.parseInt(columna[6])).get();
+				Integer documento = Integer.parseInt(columna[7]);
 				turnoMasivo.setJornada(jornada);
-				turnoService.guardar(turnoMasivo);
+				Turno turnoAux = turnoService.guardar(turnoMasivo);
+				// Se Asigna el turno al contratista si su documento existe
+				turnoService.asignarContratista(documento, turnoAux.getIdTurno());
 				// Se limpia el objeto para permitir inserción de todos los turnos disponibles
 				turnoMasivo = null;
 			}

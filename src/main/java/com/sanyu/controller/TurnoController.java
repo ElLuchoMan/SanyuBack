@@ -31,11 +31,12 @@ public class TurnoController {
 
 	// Método que permite crear un turno
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@PostMapping
+	@PostMapping("/{documento}")
 	@ApiOperation(value = "Método que permite crear un turno")
-	public ResponseEntity<?> create(@RequestBody Turno turno) {
-		turnoService.guardar(turno);
-		return new ResponseEntity(new Mensaje("turno creado"), HttpStatus.CREATED);
+	public ResponseEntity<?> create(@RequestBody Turno turno, @PathVariable(value = "documento") Integer documento) {
+		turno = turnoService.guardar(turno);
+		turnoService.asignarContratista(documento, turno.getIdTurno());
+		return new ResponseEntity(new Mensaje(turno + ""), HttpStatus.CREATED);
 	}
 
 	// Método que trae a un turno mediante su id
@@ -99,7 +100,7 @@ public class TurnoController {
 		return new ResponseEntity<List<Turno>>(contratista, HttpStatus.OK);
 	}
 
-	//Método que trae el turno del día para un contratista mediante su documento
+	// Método que trae el turno del día para un contratista mediante su documento
 	@GetMapping("/turnoHoy/{documento}")
 	@ApiOperation(value = "Método que trae el turno del día para un contratista mediante su documento")
 	public ResponseEntity<Turno> getTurnoHoyContratista(@PathVariable Integer documento) {
