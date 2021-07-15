@@ -23,7 +23,7 @@ public class LoginService {
 		if (contratista != null) {
 			// Verificar que el contratista que viene de base de datos sea igual al enviado
 			// en el body del login
-			if (contratista.getDocumento().equals(credenciales.getDocumento())) {
+			if (contratista.getDocumento().equals(credenciales.getDocumento())&& contratista.getPassword().equals(credenciales.getPassword())) {
 				// Se crea el objeto que va a responder el método login
 				UsuarioLogeado respuesta = new UsuarioLogeado(contratista.getDocumento(), contratista.getNombre(),
 						contratista.getRol(), contratista.getEstadoContratista());

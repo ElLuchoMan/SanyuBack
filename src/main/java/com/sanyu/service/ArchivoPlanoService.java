@@ -52,22 +52,23 @@ public class ArchivoPlanoService {
 				turnoMasivo = new Turno();
 				auxRegistros++;
 				String[] columna = registro.split(",");
-				turnoMasivo.setFechaInicio(Date.valueOf(columna[0]));
-				turnoMasivo.setFechaFin(Date.valueOf(columna[1]));
-				turnoMasivo.setHoraInicio(String.valueOf(columna[2]));
-				turnoMasivo.setHoraFin(String.valueOf(columna[3]));
-				turnoMasivo.setLabor(String.valueOf(columna[4]));
-				turnoMasivo.setEstadoTurno("Activo");
 				// Condición para saber si se registra o se actualiza turno
-				if (columna[5].equals("null")) {
+				if (columna[0].equals("null")) {
 					turnoMasivo.setIdTurno(null);
 				} else {
-					turnoMasivo.setIdTurno(Integer.parseInt(columna[5]));
+					turnoMasivo.setIdTurno(Integer.parseInt(columna[0]));
 				}
+				Integer documento = Integer.parseInt(columna[1]);
+				turnoMasivo.setFechaInicio(Date.valueOf(columna[2]));
+				turnoMasivo.setFechaFin(Date.valueOf(columna[3]));
 				// Get de la jornada para asignarla en el turno
-				jornada = jornadaRepository.findById(Integer.parseInt(columna[6])).get();
-				Integer documento = Integer.parseInt(columna[7]);
+				jornada = jornadaRepository.findById(Integer.parseInt(columna[4])).get();
 				turnoMasivo.setJornada(jornada);
+				turnoMasivo.setHoraInicio(String.valueOf(columna[5]));
+				turnoMasivo.setHoraFin(String.valueOf(columna[6]));
+				turnoMasivo.setLabor(String.valueOf(columna[7]));
+				turnoMasivo.setEstadoTurno("Activo");
+				// Se guarda el turno
 				Turno turnoAux = turnoService.guardar(turnoMasivo);
 				// Se Asigna el turno al contratista si su documento existe
 				turnoService.asignarContratista(documento, turnoAux.getIdTurno());
