@@ -1,5 +1,6 @@
 package com.sanyu.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -29,7 +30,8 @@ public class ContratistaController {
 	@Autowired
 	ContratistaService contratistaService;
 
-	// Método que trae la lista de todos los contratistas registrados que se encuentran activos
+	// Método que trae la lista de todos los contratistas registrados que se
+	// encuentran activos
 	@GetMapping("/")
 	@ApiOperation(value = "Método que trae la lista de todos los contratistas activos")
 	public ResponseEntity<List<Contratista>> getLista() {
@@ -71,7 +73,11 @@ public class ContratistaController {
 		// Valida si el documento ya está registrado
 		if (contratistaService.existsByDocumento(contratista.getDocumento()))
 			return new ResponseEntity(new Mensaje("Ese documento ya est� registrado"), HttpStatus.BAD_REQUEST);
-		contratistaService.guardar(contratista);
+		try {
+			contratistaService.guardar(contratista);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return new ResponseEntity(new Mensaje("Persona guardada"), HttpStatus.CREATED);
 	}
 
